@@ -10,11 +10,11 @@ namespace Modelo
 {
     public class Customer
     {
-        [Required(ErrorMessage = "Name is Compulsory")]
+        [Required(ErrorMessage = "El campo nombre es obligatorio")]
         [StringLength(20)]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1-40}$")
-            ErrorMessage = "Character ar not allowed"]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1-40}$",
+            ErrorMessage = "Character ar not allowed.")]
 
-        public string? Name { get; set; }
+        public string? FirstName { get; set; }
     }
 }
