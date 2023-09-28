@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Modelo.Estaciones;
 
 namespace Modelo
 {
@@ -64,16 +65,42 @@ namespace Modelo
 
     public class Enumerador : IEnumerator
     {
-        public object Current => throw new NotImplementedException();
+        byte estacionActual = 0;
+        Estaciones e = new Estaciones();
+        public object Current => ObtenerEstacionActual(estacionActual);
+
+        private Estacion ObtenerEstacionActual(byte estacionActual)
+        {
+            Estacion Resultado = null;
+            switch (estacionActual)
+            {
+                case 1:
+                    Resultado = e.Verano;
+                    break;
+                case 2:
+                    Resultado = e.Invierno;
+                    break;
+
+            }
+            return Resultado;
+        }
 
         public bool MoveNext()
         {
-            throw new NotImplementedException();
+            bool resultado;
+            if (estacionActual == 2)
+                resultado = false;
+            else
+            {
+                estacionActual++;
+                resultado = true;
+            }
+            return resultado;
         }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            estacionActual = 0;
         }
     }
 }
